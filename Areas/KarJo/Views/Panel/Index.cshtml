@@ -1,0 +1,132 @@
+﻿@model UscProject.Models.UserTB
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/KarJo/Views/Shared/_KarJoLayout.cshtml";
+
+    string path;
+    if (Model.ImageName == true)
+    {
+        path = Url.Content("~/Files/UserPictures/Custom/KarJo/" + Model.PictureName);
+    }
+    else
+    {
+        path = Url.Content("~/Files/UserPictures/Default/UserProfile.jpg");
+    }
+}
+
+<div class="row">
+    <div class="col-lg-6 col-12 mb-30">
+        <div class="box">
+            <div class="box-head">
+                <h4 class="title">من</h4>
+            </div>
+            <div class="box-body">
+
+                <div class="avatar-wrap d-flex align-items-center flex-wrap mbn-10">
+
+                    <div class="avatar avatar-xxl mr-10 mb-10">
+                        <img src="@path" alt="">
+                        <span class="status"></span>
+                    </div>
+
+                    <div class="col-12 mb-20">
+                        <h6 class="mb-15">فرستادن اخرین شغل ها به ایمیل</h6>
+                        <div class="adomx-checkbox-radio-group inline">
+                            <label class="adomx-switch"><input type="checkbox" class="btn-edit" @(Model.EmployerTB.First().IsEmailed==true ? "checked" : " ")> <i class="lever"></i> <span class="text"></span></label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="box-foot">
+
+
+                <div class="row mbn-15">
+                    <div class="col-12 mb-15"><input type="text" class="form-control" disabled placeholder="@Model.UserName"></div>
+                    <div class="col-12 mb-15"><input type="text" class="form-control" disabled placeholder="@Model.Email"></div>
+                    @if (ViewBag.resume == null)
+                    {
+                        <a href="@Url.Action("NewResume","Resume")" class="button button-info"><span>ساخت رزومه</span></a>
+                    }
+                    else
+                    {
+
+                        <a href="@Url.Action("EditResume","Resume")" class="button button-success"><span>ویرایش رزومه</span></a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xlg-6 col-md-6 col-12 mb-30">
+        <div class="top-report">
+
+            <!-- Head -->
+            <div class="head">
+                <h4>مجموع فرم های ارسالی</h4>
+                <a href="#" class="view"><i class="zmdi zmdi-eye"></i></a>
+            </div>
+
+            <!-- Content -->
+            <div class="content">
+                <h2>@ViewBag.sentforms</h2>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <div class="progess">
+                    <div class="progess-bar" style="width:@ViewBag.sentforms%;"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@section PageScript
+{
+    <script src="~/Areas/KarFarma/Content/assets/js/plugins/toastr/toastr.active.js"></script>
+    <script src="~/Areas/KarFarma/Content/assets/js/plugins/toastr/toastr.min.js"></script>
+    <script>
+                $(function () {
+            $(document).ready(function () {
+                $(document).on("click", ".btn-edit", function (e) {
+                    console.log(this.checked);
+                    toastr.options = {
+                        "closeButton": false,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": false,
+                        "positionClass": "toast-top-center",
+                        "preventDuplicates": true,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    }
+                    $.ajax({
+                        type: "POST",
+                        url: "/KarJo/Job/IsEmail",
+                        data: JSON.stringify({
+                            IsEmailed: this.checked
+                        }),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (e) {
+                            if (e.Status) {
+                                toastr["success"]('تغییرات ذخیره شد');
+                            }
+                        },
+                        error: function () {
+                            toastr["warning"]('خطا در ارتباط با سرور');
+                        }
+                    });
+                });
+
+            });
+        });
+    </script>
+}

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<UscProject.Models.FormTB>
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-6">
+                <div class="job-card" style="height:206px;border-radius:15px;border-style:solid;border-color:red">
+                    <div class="row align-items-center">
+                   
+
+                        <div class="col-lg-6">
+                            <div class="job-info">
+                                <h3>
+                                    <a href="@Url.Action("JobDetails","job",new { id=item.FormID})">@item.JobDescRiption</a>
+                                </h3>
+                                <ul>
+                                    <li>
+                                        <i class="bx bx-location-plus"></i>
+                                        @item.Region ، @item.City
+                                    </li>
+                                    <li>
+                                        <i class="bx bx-filter-alt"></i>
+                                        @item.JobCategoryTB.JobCategory
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="job-save">
+                                <span>@item.RequestDtae.ToShamsi()</span>
+                               
+                                <p>
+                                    <i class="bx bx-stopwatch"></i>
+                                    تعداد روز کاری:@item.WorkingDays روز
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>

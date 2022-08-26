@@ -1,0 +1,101 @@
+﻿
+@model UscProject.Models.UserTB
+@{
+    string path;
+    if (Model.ImageName == true)
+    {
+        path = Url.Content("~/Files/UserPictures/Custom/KarJo/" + Model.PictureName);
+    }
+    else
+    {
+        path = Url.Content("~/Files/UserPictures/Default/UserProfile.jpg");
+    }
+}
+    <div class="header-section" style="z-index:18">
+        <div class="container-fluid">
+            <div class="row justify-content-between align-items-center">
+
+                <!-- Header Logo (Header Left) Start -->
+                <div class="header-logo col-auto">
+                    <a href="index.html">
+                        <img src="assets/images/logo/logo.png" alt="">
+                        <img src="assets/images/logo/logo-light.png" class="logo-light" alt="">
+                    </a>
+                </div><!-- Header Logo (Header Left) End -->
+                <!-- Header Right Start -->
+                <div class="header-right flex-grow-1 col-auto">
+                    <div class="row justify-content-between align-items-center">
+
+                        <!-- Side Header Toggle & Search Start -->
+                        <div class="col-auto">
+                            <div class="row align-items-center">
+
+                                <!--Side Header Toggle-->
+                                <div class="col-auto"><button class="side-header-toggle"><i class="zmdi zmdi-menu"></i></button></div>
+
+                                <!--Header Search-->
+                                <div class="col-auto">
+
+                                    <div class="header-search">
+
+                                        <button class="header-search-open d-block d-xl-none"><i class="zmdi zmdi-search"></i></button>
+
+                                        <div class="header-search-form">
+                                            <form action="#">
+                                                <input type="text" placeholder="جستجو کنید">
+                                                <button><i class="zmdi zmdi-search"></i></button>
+                                            </form>
+                                            <button class="header-search-close d-block d-xl-none"><i class="zmdi zmdi-close"></i></button>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div><!-- Side Header Toggle & Search End -->
+                        <!-- Header Notifications Area Start -->
+                        <div class="col-auto">
+
+                            <ul class="header-notification-area">
+                                <!--User-->
+                                <li class="adomx-dropdown col-auto">
+                                    <a class="toggle" href="#">
+                                        <span class="user">
+                                            <span class="avatar">
+                                                <img src="@path" alt="">
+                                                <span class="status"></span>
+                                            </span>
+                                            <span class="name">@Model.UserName</span>
+                                        </span>
+                                    </a>
+
+                                    <!-- Dropdown -->
+                                    <div class="adomx-dropdown-menu dropdown-menu-user">
+                                        <div class="head">
+                                            <span class="name">@Model.UserName</span>
+                                            <a class="mail" href="#">@Model.Email</a>
+                                        </div>
+                                        <div class="body">
+                                            <ul>
+                                                <li><a href="/Admin/Panel/PersonalInformation"><i class="zmdi zmdi-account"></i>پروفایل</a></li>
+                                                <li><a href="/Admin/Panel/Index"><i class="zmdi zmdi-wallpaper"></i>فعالیت</a></li>
+                                            </ul>
+                                            <ul>
+                                                <li><a href="/LogOut"><i class="zmdi zmdi-lock-open"></i>خروج</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </li>
+
+                            </ul>
+
+                        </div><!-- Header Notifications Area End -->
+
+                    </div>
+                </div><!-- Header Right End -->
+
+            </div>
+        </div>
+    </div>
+

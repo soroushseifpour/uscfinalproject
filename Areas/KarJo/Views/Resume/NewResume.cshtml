@@ -1,0 +1,106 @@
+﻿@model UscProject.Areas.KarJo.ViewModel.Resumevm
+@{
+    ViewBag.Title = "NewResume";
+    Layout = "~/Areas/KarJo/Views/Shared/_KarJoLayout.cshtml";
+}
+
+<div class="col-lg-12 col-12 mb-30">
+    <div class="box">
+        <div class="box-head">
+            <h4 class="title">فرم با عناصر فرم پیشرفته</h4>
+        </div>
+        <div class="box-body">
+
+            @using (Html.BeginForm())
+            {
+
+                @Html.AntiForgeryToken()
+
+                <div class="row mbn-20">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="col-12 mb-20">
+                        @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label " })
+                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-12 mb-20">
+                        @Html.LabelFor(model => model.LatsName, htmlAttributes: new { @class = "control-label " })
+                        @Html.EditorFor(model => model.LatsName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.LatsName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-12 mb-20">
+                        <div class="row mbn-20">
+                            <div class="col-lg-4 mb-20">
+                                @Html.LabelFor(model => model.Age, htmlAttributes: new { @class = "control-label " })
+                                @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-lg-4 mb-20">
+
+                                @Html.LabelFor(model => model.EduDegree, htmlAttributes: new { @class = "control-label " })
+                                
+                                    @Html.DropDownListFor(model => model.EduDegree, new List<SelectListItem>
+                                    {
+                                       new SelectListItem{Text="دیپلم",Value="diploma",Selected=true},
+                                       new SelectListItem{Text="کارشناسی",Value="bachlor"},
+                                       new SelectListItem{Text="کارشناسی ارشد",Value="master"}
+                                    }, new { @class = "form-control select2" })
+                                  
+
+                            </div>
+                            <div class="col-lg-4 mb-20">
+
+                                @Html.LabelFor(model => model.JobCategory, htmlAttributes: new { @class = "control-label " })
+                                @Html.DropDownListFor(model=>model.JobCategory,Model.jobCategories, new { @class = "form-control select2" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-20">
+                        @Html.LabelFor(model => model.University, htmlAttributes: new { @class = "control-label " })
+                        @Html.EditorFor(model => model.University, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.University, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-12 mb-20">
+                        @Html.LabelFor(model => model.AbilityDescription, htmlAttributes: new { @class = "control-label " })
+                        @Html.EditorFor(model => model.AbilityDescription, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.AbilityDescription, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-12 mb-20">
+
+                        @Html.LabelFor(model => model.Experience, htmlAttributes: new { @class = "control-label " })
+                        @Html.TextAreaFor(model => model.Experience, new { @class = "form-control comment-box", @cols = "20", @rows = "6" })
+                    </div>
+                    <div class="col-sm-6 col-12 mb-20">
+
+                        @Html.LabelFor(model => model.EnglishAbility)
+                        <div class="adomx-checkbox-radio-group">
+
+                            <label class="adomx-radio">
+                                @Html.RadioButtonFor(model => model.EnglishAbility, "بله")<i class="icon"></i>بله
+                            </label>
+                            <label class="adomx-radio">
+                                @Html.RadioButtonFor(model => model.EnglishAbility, "خیر")<i class="icon"></i>خیر
+                            </label>
+                            @Html.ValidationMessageFor(model => model.EnglishAbility, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-12 mb-20">
+
+                        @Html.LabelFor(model => model.ExtraAbility, htmlAttributes: new { @class = "control-label " })
+                        @Html.TextAreaFor(model => model.ExtraAbility, new { @class = "form-control comment-box", @cols = "20", @rows = "6" })
+                    </div>
+                    <div class="col-12 mb-20">
+                        <input type="submit" value="ساخت رزومه" class="button button-primary btn-edit">
+
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>>
+@section PageScript
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

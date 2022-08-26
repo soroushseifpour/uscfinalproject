@@ -1,0 +1,69 @@
+﻿@model List<UscProject.Models.FormTB>
+@{
+    ViewBag.Title = "Recoms";
+    Layout = "~/Areas/KarJo/Views/Shared/_KarJoLayout.cshtml";
+}
+<div class="row justify-content-between align-items-center mb-10">
+
+    <!-- Page Heading Start -->
+    <div class="col-12 col-lg-auto mb-20">
+        <div class="page-heading">
+            <h3 class="title">جدول شغل های پیشنهادی</h3>
+        </div>
+    </div><!-- Page Heading End -->
+
+</div><!-- Page Headings End -->
+@if (ViewBag.resume != null)
+{
+    <div class="row">
+
+        <!--Basic Start-->
+        <div class="col-12 mb-30">
+            <div class="box">
+                <div class="box-head">
+                </div>
+                <div class="box-body">
+
+                    <table class="table footable" data-paging="true" data-filtering="true" data-sorting="true" data-breakpoints='{ "xs": 480, "sm": 768, "md": 992, "lg": 1200, "xl": 1400 }'>
+                        <thead>
+                            <tr>
+                                <th data-name="نام">اسم شرکت</th>
+                                <th data-breakpoints="xs" data-name="موقعیت">تاریخ تشکیل</th>
+                                <th data-breakpoints="xs sm" data-name="نوع تخصص">نوع تخصص</th>
+                                <th data-breakpoints="xs sm md" data-name="عملیات">عملیات</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var g in Model)
+                            {
+                                <tr>
+                                    <td>@g.FormDetailTB.First().EmployeeTB.CompanyName</td>
+                                    <td>@g.RequestDtae.ToShamsi()</td>
+                                    <td>@g.JobDescRiption</td>
+                                    <td><a href="@Url.Action("jobDetail","Job",new { id=g.FormID })"><span class="badge badge-pill badge-success">مشاهده </span></a></td>
+
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <!--Basic End-->
+    </div>
+}
+else
+{
+    @ViewBag.resume
+}
+@section PageScript
+{
+    <script src="~/Areas/KarJo/Content/assets/js/plugins/moment/moment.min.js"></script>
+    <script src="~/Areas/KarJo/Content/assets/js/plugins/footable/footable.min.js"></script>
+    <script src="~/Areas/KarJo/Content/assets/js/plugins/footable/footable.active.js"></script>
+    <script src="~/Areas/KarJo/Content/assets/js/plugins/datatables/datatables.min.js"></script>
+    <script src="~/Areas/KarJo/Content/assets/js/plugins/datatables/datatables.active.js"></script>
+}

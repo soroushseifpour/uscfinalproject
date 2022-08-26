@@ -1,0 +1,486 @@
+﻿@model UscProject.ViewModel.Indexvm
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="banner-section">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="banner-content text-center">
+                    <p>شغل ، فرصت های شغلی را بیابید</p>
+                    <h1>رزومه بگیرید و شغل مورد علاقه خود را بدست آورید!</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Category Section Start -->
+<section class="categories-section pt-100 pb-70">
+    <div class="container">
+        <div class="section-title text-center">
+            <h2>دسته بتدی های برتر</h2>
+            <p>به راحتی شغل مورد نظرت را در دسته بندی های زیر پیدا کن!.</p>
+        </div>
+
+        <div class="row">
+            @foreach (var item in Model.categoryvms)
+            {
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="category-card" style="height:209.67px">
+                        <i class="flaticon-accounting"></i>
+                        <h3>@item.catname</h3>
+                        <p>@item.count موقعیت باز</p>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</section>
+<!-- Category Section End -->
+<!-- Banner Section End -->
+@*@if (User.Identity.IsAuthenticated)
+{
+
+    <section class="job-section pb-70">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>مشاغلی که ممکن است در آن علاقمند باشید</h2>
+                <p>لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم به مدت 40 سال استاندارد صنعت بوده است.</p>
+            </div>
+
+            <div class="row">
+                @foreach (var item in Model.forms)
+                {
+                    <div class="col-sm-6">
+                        <div class="job-card">
+                            <div class="row align-items-center">
+
+                                <div class="col-md-8">
+                                    <div class="job-info">
+                                        <h3>
+                                            <a href="@Url.Action("JobDetails",new { id=item.FormID})">@item.JobDescRiption</a>
+                                        </h3>
+                                        <ul>
+                                            <li>
+                                                <i class='bx bx-briefcase'></i>
+                                                @item.JobCategoryTB.JobCategory
+                                            </li>
+                                            <li>
+                                                <i class='bx bx-location-plus'></i>
+                                                @item.Region ، @item.City
+                                            </li>
+                                            <li>
+                                                <i class='bx bx-stopwatch'></i>
+                                                @item.RequestDtae.ToShamsi()
+                                            </li>
+                                            <li>
+                                                <i class='bx bx-calendar-star'></i>
+                                                تعداد روزهای مورد نیاز:@item.WorkingDays روز
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="theme-btn text-right">
+                                        <a href="@Url.Action("JobDetails",new { id=item.FormID})" class="default-btn" style="border-radius:5px;">
+                                            انتخاب شغل
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+}
+else
+{
+    @ViewBag.FormMEssage
+}*@
+<!-- Jobs Section End -->
+<!-- Jobs Section Start -->
+<!-- Jobs Section End -->
+<!-- Way To Use Section Start -->
+<section class="use-section pt-100 pb-70">
+    <div class="container">
+        <div class="section-title text-center">
+            <h2>ساده ترین راه برای استفاده</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
+                <div class="use-text">
+                    <span>1</span>
+                    <i class="flaticon-website"></i>
+                    <h3>کار را جستجو کنید</h3>
+                    <p>
+                        نمایشگاه کار فرصتی است منحصربفرد برای دسترسی به هزاران آگهی استخدام و از آن مهمتر ملاقات مدیران بهترین سازمانهای کشور در یک زمان و مکان مشخص!
+                        سازمانها در این رویداد به دنبال ارتقای برند کارفرمایی خود و استخدام بهترین استعدادهای بازار کار هستند و کارجویان نیز در طرف مقابل تلاش می کنند تا اطلاعات کافی در مورد سازمانها کسب کرده و شانس خود را برای استخدام شدن در شغل مورد نظر امتحان کنند..
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6">
+                <div class="use-text">
+                    <span>2</span>
+                    <i class="flaticon-recruitment"></i>
+                    <h3>کار خود را پیدا کنید</h3>
+                    <p>با استفاده از سیستم هوشمند انطباق، کارفرما هنگام ثبت آگهی استخدام، شرایط مد نظر خود را در ۱۱ شاخص مختلف، مشخص نموده و وزن دلخواه خود را به هر یک از این شاخص‌ها اختصاص میدهد. بنابراین شما قبل از ارسال رزومه به‌راحتی متوجه خواهید شد که رزومه شما تا چه حد با هر آگهی استخدام انطباق دارد.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6 offset-sm-3 offset-md-0">
+                <div class="use-text">
+                    <span>3</span>
+                    <i class="flaticon-login"></i>
+                    <h3>ارسال رزومه</h3>
+                    <p>
+                        اولین بار این رزومه شماست که به جای شما با کارفرما حرف میزند!
+                        پس بهتر است در اولین گام، با استفاده از رزومه ساز دو زبانه جاب ویژن، رزومه ای استاندارد و در عین حال زیبا برای خود بسازید تا بتوانید شانس استخدام بالاتری داشته باشید.
+                        نکته جذاب و منحصر بفرد این رزومه ساز، تکمیل همزمان اطلاعات رزومه انگلیسی و فارسی بصورت خودکار است..
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Way To Use Section End -->
+<!-- Companies Section Start -->
+<section class="company-section pt-100 pb-70">
+    <div class="container">
+        <div class="section-title text-center">
+            <h2>شرکت های برتر</h2>
+            <p>سازمانهای معتبر برای استخدام.</p>
+        </div>
+
+        <div class="row">
+            @foreach (var item in Model.companiesvms)
+            {
+                <div class="col-lg-3 col-sm-6">
+                    <div class="company-card" style="height:330px;border-radius:15px;border-style:solid">
+                        <div class="company-logo">
+                            <a href="@Url.Action("JobLists",new { id= item.id , img=item.img})">
+                                <img style="width:100.41px;height:50.67px" src="@item.img" alt="آرم شرکت">
+                            </a>
+                        </div>
+                        <div class="company-text">
+                            <h3>@item.name</h3>
+                            <p>
+                                <i class="bx bx-location-plus"></i>
+                                @item.address
+                            </p>
+                            <a href="@Url.Action("JobLists","Job",new { id= item.id})" class="company-btn" style="border-radius:5px">
+                                @item.FormsCount موقعیت باز
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+<!-- Companies Section End -->
+<!-- Why Choose Section Start -->
+<section class="why-choose">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-7 p-0">
+                <div class="why-choose-text pt-100 pb-70">
+                    <div class="section-title text-center">
+                        <h2>چرا شما جوی را انتخاب می کنید؟</h2>
+                        <p>با توجه به معیارهای خودتان شغل اینده خود را انتخاب کنید</p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="media">
+                                <i class="flaticon-group align-self-center mr-3"></i>
+                                <div class="media-body">
+                                    <h5 class="mt-0">بهترین افراد با استعداد</h5>
+                                    <p>بهترین نیروهای کار را برای خود انتخاب کنید</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="media">
+                                <i class="flaticon-research align-self-center mr-3"></i>
+                                <div class="media-body">
+                                    <h5 class="mt-0">پیدا کردن داوطلبی آسان</h5>
+                                    <p>با ارسال فرم کارجوی مد نظ خود را پیدا کنید.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="media">
+                                <i class="flaticon-discussion align-self-center mr-3"></i>
+                                <div class="media-body">
+                                    <h5 class="mt-0">برقراری ارتباط آسان</h5>
+                                    <p>رزومه های خود را برای کارفرماها ارسال کنید.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="media">
+                                <i class="flaticon-recruitment align-self-center mr-3"></i>
+                                <div class="media-body">
+                                    <h5 class="mt-0">گزینه استخدام جهانی</h5>
+                                    <p>یک محیط جامع برای کارجو و کارفرماد.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row counter-area">
+                        <div class="col-md-3 col-6">
+                            <div class="counter-text">
+                                <h2><span>@ViewBag.Forms</span></h2>
+                                <p>شغل ارسال شده</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-6">
+                            <div class="counter-text">
+                                <h2><span>@ViewBag.Resume</span></h2>
+                                <p>رزومه پرونده دار</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-6">
+                            <div class="counter-text">
+                                <h2><span>@ViewBag.company</span></h2>
+                                <p>شرکت</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-6">
+                            <div class="counter-text">
+                                <h2><span>@ViewBag.User</span></h2>
+                                <p>کاربر</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5 p-0">
+                <div class="why-choose-img">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Why Choose Section End -->
+<!-- Job Info Section Start -->
+<div class="job-info pt-100 pb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="looking-job">
+                    <div class="media">
+                        <i class="flaticon-group align-self-start mr-3"></i>
+                        <div class="media-body">
+                            <h5 class="mt-0">دنبال کار می گردید</h5>
+                            <p>نقش بعدی شما می تواند با یکی از این سازمان های برتر پیشرو باشد</p>
+
+                        </div>
+                    </div>
+                    <i class="flaticon-group bottom-icon"></i>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="recruiting-card">
+                    <div class="media">
+                        <i class="flaticon-resume align-self-start mr-3"></i>
+                        <div class="media-body">
+                            <h5 class="mt-0">آیا استخدام می شوید؟</h5>
+                            <p>نقش بعدی شما می تواند با یکی از این سازمان های برتر پیشرو باشد</p>
+
+                        </div>
+                    </div>
+                    <i class="flaticon-resume bottom-icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Job Info Section End -->
+<!-- Pricing Section Start -->
+@*<section class="pricing-section pb-70">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>برنامه ها و بسته های ما را بخرید</h2>
+                <p>لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم به مدت 40 سال استاندارد صنعت بوده است. لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم به مدت 40 سال استاندارد صنعت بوده است.</p>
+            </div>
+
+            <div class="row">
+                @foreach (var item in Model.boxes)
+                {
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="price-card">
+                            <div class="price-top">
+                                <h3>@item.BoxName</h3>
+                                <i class="bx bx-user"></i>
+                                <h2>@item.Price <sub>تومان / @item.DatePermission روزه</sub></h2>
+                                <h5>@item.CountPermisson  اگهی ها در این مدت</h5>
+                            </div>
+
+                            <div class="price-feature">
+                                <ul>
+                                    @{
+
+                                        char[] delimiterCharsEXP = { ',', '،' };
+                                        string[] wordsEXP = item.BoxDescription.Split(delimiterCharsEXP);
+                                        foreach (var items in wordsEXP)
+                                        {
+                                            <li>
+                                                <i class="bx bx-check"></i>
+                                                @items
+                                            </li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                            @if (ViewBag.RoleID == 2)
+                            {
+                                <div class="price-btn">
+                                    <a class="btn" href="/Pay/payment/@item.BoxCategoryID">@ViewBag.message</a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="price-btn">
+                                    <a class="btn">@ViewBag.message</a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                }
+
+            </div>
+        </div>
+    </section>*@
+<!-- Blog Section Start -->
+<section class="blog-section pt-100 pb-70">
+    <div class="container">
+        <div class="section-title text-center">
+            <h2>اخبار ، نکات و مقالات</h2>
+            <p>اینجا یکسری مقالات مفید داریم.</p>
+        </div>
+
+        <div class="row" style="text-align:justify">
+            <div class="col-lg-4 col-sm-6">
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <a href="/Blog/index">
+                            <img src="~/Content_site/assets/img/blog/1.jpg" alt="تصویر وبلاگ">
+
+                        </a>
+                    </div>
+                    <div class="blog-text">
+                        <ul>
+                            <li>
+                                <i class="bx bxs-user"></i>
+                                مدیر
+                            </li>
+                            <li>
+                                <i class="bx bx-calendar"></i>
+                                7 دی 1398
+                            </li>
+                        </ul>
+
+                        <h3>
+                            <a href="/Blog/index">
+                                چگونه می توان در مصاحبه شغلی در خود جای داد؟
+                            </a>
+                        </h3>
+                        <p>،  مهارت، توسط یه موسسه آموزشی معتبر و حرفه‌ای ارزیابی شده و مورد تایید قرار گرفته. حالا میتونی در رقابت با کارجوهای دیگه، پیروز بشی و بهتر استخدام بشی</p>
+
+                        <a href="/Blog/index" class="blog-btn">
+                            بیشتر بخوانید
+                            <i class="bx bx-plus bx-spin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-sm-6">
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <a href="/Blog/index">
+                            <img src="~/Content_site/assets/img/blog/2.jpg" alt="تصویر وبلاگ">
+                        </a>
+                    </div>
+                    <div class="blog-text">
+                        <ul>
+                            <li>
+                                <i class="bx bxs-user"></i>
+                                مدیر
+                            </li>
+                            <li>
+                                <i class="bx bx-calendar"></i>
+                                7 دی 1398
+                            </li>
+                        </ul>
+
+                        <h3>
+                            <a href="/Blog/index">
+                                به دنبال یک محصول با انگیزه بالا برای ساخت هستید
+                            </a>
+                        </h3>
+                        <p>بعد از اینکه در دوره‌های آموزشی موسسات همکار ما شرکت کردی کافیه در بخش دوره‌های آموزشی رزومه‌ساز جاب ویژن، نام این دوره رو به رزومه‌ی خودت اضافه کنی د..</p>
+
+                        <a href="/Blog/index" class="blog-btn">
+                            بیشتر بخوانید
+                            <i class="bx bx-plus bx-spin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-sm-6 offset-sm-3 offset-lg-0">
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <a href="/Blog/index">
+                            <img src="~/Content_site/assets/img/blog/3.jpg" alt="تصویر وبلاگ">
+                        </a>
+                    </div>
+                    <div class="blog-text">
+                        <ul>
+                            <li>
+                                <i class="bx bxs-user"></i>
+                                مدیر
+                            </li>
+                            <li>
+                                <i class="bx bx-calendar"></i>
+                                7 دی 1398
+                            </li>
+                        </ul>
+
+                        <h3>
+                            <a href="/Blog/index">
+                                دلیل توسعه نرم افزار بهترین کار است
+                            </a>
+                        </h3>
+                        <p>با تاییدیه اون موسسه، مدالی در کنار رزومه‌ت قرار میگیره که تو رو در لیست رزومه‌ها بصورت متمایز به کارفرماها نشون میده..در دوره های ما</p>
+
+                        <a href="/Blog/index" class="blog-btn">
+                            بیشتر بخوانید
+                            <i class="bx bx-plus bx-spin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,203 @@
+﻿@model UscProject.Models.FormTB
+@{
+    ViewBag.Title = "jobDetail";
+    Layout = "~/Areas/KarJo/Views/Shared/_KarJoLayout.cshtml";
+}
+@{
+    string path;
+
+    path = Url.Content("~/Files/UserPictures/Custom/KarFarma/" + ViewBag.ImageName);
+
+}
+<!-- Page Headings Start -->
+<div class="row justify-content-between align-items-center mb-10">
+
+    <!-- Page Heading Start -->
+    <div class="col-12 col-lg-auto mb-20">
+        <div class="page-heading">
+            <h3>مشخصات فرم</h3>
+        </div>
+    </div><!-- Page Heading End -->
+
+</div><!-- Page Headings End -->
+
+<div class="row mbn-50">
+
+    <!--Author Top Start-->
+    <div class="col-12 mb-50" style="text-align:center">
+        <img style="width:225px;height:225px" src="@path" />
+    </div>
+    <!--Author Top End-->
+    <!--Timeline / Activities Start-->
+    <div class="col-xlg-8 col-12 mb-50">
+        <div class="box">
+
+            <div class="box-head">
+                <h3 class="title">خمشخصات فرم</h3>
+            </div>
+
+            <div class="box-body">
+
+                <div class="timeline-wrap row mbn-50">
+
+                    <div class="col-12 mb-50"><span class="timeline-date">@Model.RequestDtae.ToShamsi()</span></div>
+
+                    <div class="col-12 mb-50">
+                        <ul class="timeline-list">
+
+                            <li>
+                                <span class="icon"><i class="zmdi zmdi-receipt"></i></span>
+                                <div class="details">
+                                    <h5 class="title"><a href="#">شرح شغل</a></h5>
+                                    <div class="content">
+                                        <p style="text-align:justify"> @Model.FormText</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="icon"><i class="zmdi zmdi-receipt"></i></span>
+                                <div class="details">
+                                    <h5 class="title"><a href="#">مزایای شغلی</a></h5>
+                                    <div class="content">
+                                        @{
+                                            if (Model.Benefits != null)
+                                            {
+
+                                                char[] delimiterCharsEXP = { ',', '،' };
+                                                string[] wordsEXP = Model.Benefits.Split(delimiterCharsEXP);
+
+                                                foreach (var w in wordsEXP)
+                                                {
+                                                    <P>@w</P>
+
+                                                }
+                                            }
+                                            else
+                                            {
+
+                                                <p>.....</p>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="icon"><i class="zmdi zmdi-receipt"></i></span>
+                                <div class="details">
+                                    <h5 class="title"><a href="#">نوع شغل</a></h5>
+                                    <div class="content">
+                                        <p style="text-align:justify"> @Model.JobDescRiption و  @Model.JobCategoryTB.JobCategory</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="icon"><i class="zmdi zmdi-receipt"></i></span>
+                                <div class="details">
+                                    <h5 class="title"><a href="#">محل کار</a></h5>
+                                    <div class="content">
+                                        <p style="text-align:justify"> شهر:@Model.City , استان یا منطقه: @Model.Region</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="icon"><i class="zmdi zmdi-receipt"></i></span>
+                                <div class="details">
+                                    <h5 class="title"><a href="#">شرح نیازمندی ها</a></h5>
+                                    <div class="content">
+                                        <p style="text-align:justify"> @Model.Requirements</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="icon"><i class="zmdi zmdi-receipt"></i></span>
+                                <div class="details">
+                                    <h5 class="title"><a href="#">توانایی‌های مورد نیاز</a></h5>
+                                    <div class="content">
+                                        @{
+                                            if (Model.Abilities != null)
+                                            {
+
+                                                char[] delimiterCharsEXP = { ',', '،' };
+                                                string[] wordsEXP = Model.Benefits.Split(delimiterCharsEXP);
+
+                                                foreach (var w in wordsEXP)
+                                                {
+                                                    <P>@w</P>
+
+                                                }
+                                            }
+                                            else
+                                            {
+
+                                                <p>.....</p>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="box-foot">
+                <div class="col-12 mt-10 mb-20">
+                    <button class="button btn-edit button-primary button-outline">فرستادن رزومه</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section PageScript
+{
+    <script src="~/Areas/KarFarma/Content/assets/js/plugins/toastr/toastr.active.js"></script>
+    <script src="~/Areas/KarFarma/Content/assets/js/plugins/toastr/toastr.min.js"></script>
+    <script>
+                $(function () {
+            $(document).ready(function () {
+                $(document).on("click", ".btn-edit", function (e) {
+                    toastr.options = {
+                        "closeButton": false,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": false,
+                        "positionClass": "toast-top-center",
+                        "preventDuplicates": true,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    }
+                    $.ajax({
+                        type: "POST",
+                        url: "/KarJo/Job/AddingForm",
+                        data: JSON.stringify({
+                            FormID:@Model.FormID
+                        }),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (e) {
+                            if (e.Status) {
+                                toastr["success"]('تغییرات ذخیره شد');
+                            }
+                            else {
+                                toastr["error"](e.Message)
+
+                            }
+                        },
+                        error: function () {
+                            toastr["warning"]('خطا در ارتباط با سرور');
+                        }
+                    });
+                });
+
+            });
+        });
+    </script>
+}
